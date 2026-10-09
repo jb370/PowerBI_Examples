@@ -22,6 +22,7 @@ Interactive Power BI reports built to practice data modeling, dashboard design, 
 | [World Population Report](#3-world-population-report) | How is the world's population distributed by country and continent, and how has it changed over time? | Star-style model with a country dimension, DAX measure, ArcGIS map |
 
 Tools: Power BI Desktop, DAX, Power Query
+
 Data:  Microsoft's Adventure Works sample data; the World Population Data dataset
 
 ---
@@ -37,21 +38,21 @@ Three tables:
 
 | Table | Role | Fields used in the report |
 
-| `Order` | Order-level data | Order Date (with a Year / Quarter / Month / Day hierarchy), Order Total |
+| Order | Order-level data | Order Date (with a Year / Quarter / Month / Day hierarchy), Order Total |
 
-| `Sales` | Line-level product data | Product Name, Product Category, Product Price, Order Total |
+| Sales | Line-level product data | Product Name, Product Category, Product Price, Order Total |
 
-| `Customer` | Customer attributes | Country (grouped) |
+| Customer | Customer attributes | Country (grouped) |
 
-Relationships between the tables, their cardinality and filter direction  `Customer` 1 <-→ 1 `Order` on CustomerID, `Customer` 1 <-→ 1 `Sales`.
+Relationships between the tables, their cardinality and filter direction  Customer 1 <-→ 1 Order on CustomerID, Customer 1 <-→ 1 Sales on CustomerID
 
 # Report page
 One page with four visuals:
 
-- **Line chart:** order total by day
-- **Scatter chart:** product price vs. order total by product name, clustered to group similar products
-- **Waterfall chart:** how daily order totals build up, broken down by **product category**
-- **Waterfall chart:** the same view broken down by **customer country** (a grouped field)
+- Line chart: order total by day
+- Scatter chart: product price vs. order total by product name, clustered to group similar products
+- Waterfall chart: how daily order totals build up, broken down by **product category**
+- Waterfall chart: the same view broken down by **customer country** (a grouped field)
 
 # Techniques demonstrated
 - Date hierarchy for drilling from year to day
@@ -73,7 +74,7 @@ Adventure-Works-Product-Sales-Report.pbix
 A three-page report titled **"Adventure Works Product Sales Report 2023"**, focused on product-level revenue.
 
 # Data model
-A single `Sales` table with product attributes (category, subcategory, color, size), an order date, and an order total.
+A single Sales table with product attributes (category, subcategory, color, size), an order date, and an order total.
 
 # Report pages
 
@@ -106,12 +107,12 @@ Two tables:
 
 | Table | Role | Fields used in the report |
 
-| `WorldPopulation` | Fact-style table of population figures | Year (date), Population, **CurrentPopulation** (DAX measure) |
-| `DimCountry` | Country dimension | Country/Territory, Continent |
+| WorldPopulation | Fact-style table of population figures | Year (date), Population, **CurrentPopulation** (DAX measure) |
+| DimCountry | Country dimension | Country/Territory, Continent |
 
 DAX Measure - CurrentPopulation = CALCULATE(SUM('WorldPopulation'[Population]), FILTER('WorldPopulation', YEAR('WorldPopulation'[Year]) = 2021))
 
-### Report visuals
+# Report visuals
 - Card: current world population
 - Clustered column chart: current population by continent
 - ArcGIS map: current population by country (bubble size and color by population)
