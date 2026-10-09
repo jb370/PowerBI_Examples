@@ -23,6 +23,7 @@ Interactive Power BI reports built to practice data modeling, dashboard design, 
 
 Tools: Power BI Desktop, DAX, Power Query
 Data:  Microsoft's Adventure Works sample data; the World Population Data dataset
+
 ---
 1. Adventure Works Sales Report
 
